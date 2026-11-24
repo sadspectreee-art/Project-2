@@ -1,10 +1,11 @@
 slovar = {
     'Миша': {'Оценки': [6, 8, 2, 3, 5]},
-    'Айдан': {'Оценки': [9, 7, 4, 10]}}
+    'Айдан': {'Оценки': [9, 7, 4, 10]}
+}
 
-try:
-    def add_student():
-        stud = input('Введите имя студента: ').title()
+# try:
+def add_student():
+        stud = input('Введите имя студента: ').capitalize()
         if stud == '':
             print(f'Не оставляйте поле пустым!')
             menu()
@@ -19,9 +20,9 @@ try:
             print(f'Ошибка!')
         elif x=='2':
             add_student()
-except ValueError:
-    print(f"Ввели не символ!")
-    menu()
+# except ValueError:
+#     print(f"Ввели не символ!")
+
 
 
 def show_student():
@@ -38,7 +39,7 @@ def show_student():
 
 def find_student():
     print(f'        Поиск студента')
-    stu = input('Введите имя студента: ').title()
+    stu = input('Введите имя студента: ').capitalize()
     if stu == '':
             print(f'Нельзя оставлять поле пустым!' )
             menu()
@@ -64,30 +65,31 @@ def change_rating():
         print(f'Нельзя оставить поле пустым!')
         menu()
         return
-    for i in slovar:
-        if vibor ==i:
+    for i in slovar.keys():
+        if vibor == i:
             osen = input('Добавить(1) или удалить оценку?(2): ')
-        if osen == '1':
-            osen2 = int(input('Введите оценку: '))
-            slovar[i]['Оценки'].append(osen2)
-            print(f'Оценка добавлена!')
-            print(slovar [i])
-            return
-        elif osen == '2':
-            print(slovar[i]['Оценки'])
-            osen3 = int(input('Какую оценку удалить?'))
-            slovar[i]['Оценки'].remove(osen3)
-            print('\f \f \f      Оценка удалена!')
-            print(slovar[i])
-            return
-        else:
-            print('Повторите заново!')
-        x = input('Вернуться к меню?[1] / Изменить оценку студента[2] ')
-        if x == '1':
+            if osen == '1':
+                osen2 = int(input('Введите оценку: '))
+                slovar[i]['Оценки'].append(osen2)
+                print(f'Оценка добавлена!')
+                print(slovar [i])
+
+            elif osen == '2':
+                print(slovar[i]['Оценки'])
+                osen3 = int(input('Какую оценку удалить?'))
+                slovar[i]['Оценки'].remove(osen3)
+                print('\f \f \f      Оценка удалена!')
+                print(slovar[i])
+                menu()
+
+            else:
+                print('Повторите заново!')
+    x = input('Вернуться к меню?[1] / Изменить оценку студента[2] ')
+    if x == '1':
             menu()
-        elif x == '':
+    elif x == '':
             print(f'Ошибка!')
-        elif x == '2':
+    elif x == '2':
             change_rating()
 
 
@@ -142,16 +144,16 @@ def menu():
         5. Удалить студента
         6. Средний балл
         0. Выход""")
-    try:
-        choice = int(input("Введите число от 1 до 6: "))
-    except ValueError:
-        print(f"Ввели не число!")
-        menu()
-        return
-
+    # try:
+    choice = int(input("Введите число от 1 до 6: "))
+    # except ValueError:
+    #     print(f"Ввели не число!")
+    #     # menu()
+    #     return
 
     if choice == 1:
         add_student()
+        # menu()
 
     elif choice == 2:
         show_student()
@@ -170,3 +172,4 @@ def menu():
 
 
 menu()
+
